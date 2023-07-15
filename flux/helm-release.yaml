@@ -6,16 +6,9 @@ metadata:
   annotations:
     fluxcd.io/automated: "true"
 spec:
-  interval: 1m
+  releaseName: ols-basf
+  targetNamespace: ols-basf
   chart:
-    spec:
-      chart: ./helm-charts/ols-basf
-      version: '>=0.0.1 <1.0.0'
-      sourceRef:
-        kind: GitRepository
-        name: ols-basf
-        namespace: flux-system
-      interval: 1m
-  reconcileStrategy: Revision
-  values:
-    replicaCount: 1
+    git: git@github.com:brunopma/OLS.git
+    path: helm-charts/ols-basf
+    ref: dev
