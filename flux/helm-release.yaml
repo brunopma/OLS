@@ -4,7 +4,7 @@ metadata:
   name: ols-basf
   namespace: ols-basf
 spec:
-  interval: 5m
+  interval: 1m
   chart:
     spec:
       chart: ./helm-charts/ols-basf
