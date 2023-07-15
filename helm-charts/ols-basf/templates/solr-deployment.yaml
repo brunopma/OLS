@@ -24,20 +24,14 @@ spec:
               value: "8983"
             - name: SOLR_HOME
               value: /mnt/solr-config
-          image: ebispot/ols-solr:latest
+          image: brunopma/ols-solr-custom:latest
           name: solr
           ports:
             - containerPort: 8983
           resources: {}
           volumeMounts:
-            - name: solr-conf
-              mountPath: /mnt/solr-config/solr.xml
-              subPath: solr.xml
-              readOnly: true
             - mountPath: /var/solr
               name: ols-solr-data
-            - mountPath: /mnt/solr-config
-              name: solr-claim1
       restartPolicy: Always
       volumes:
         - name: solr-conf

@@ -1,0 +1,2 @@
+127.0.0.1    ols-basf.local /etc/resolv.conf
+127.0.0.1    ols-basf.local /etc/hosts
