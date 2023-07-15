@@ -1,0 +1,8 @@
+name: OLS-BASF
+description: A chart that deploys the OLS stack to process and display ontologies
+version: 0.0.1
+apiVersion: v1
+keywords:
+  - OLS
+  - ontologies
+  - BASF

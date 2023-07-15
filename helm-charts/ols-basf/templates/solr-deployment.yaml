@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: solr
+  name: solr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: solr
+  template:
+    metadata:
+      labels:
+        app: solr
+    spec:
+      containers:
+        - args:
+            - -Dsolr.solr.home=/mnt/solr-config
+            - -Dsolr.data.dir=/var/solr
+            - -f
+          env:
+            - name: SOLR_PORT
+              value: "8983"
+            - name: SOLR_HOME
+              value: /mnt/solr-config
+          image: ebispot/ols-solr:latest
+          name: solr
+          ports:
+            - containerPort: 8983
+          resources: {}
+          volumeMounts:
+            - name: solr-conf
+              mountPath: /mnt/solr-config/solr.xml
+              subPath: solr.xml
+              readOnly: true
+            - mountPath: /var/solr
+              name: ols-solr-data
+            - mountPath: /mnt/solr-config
+              name: solr-claim1
+      restartPolicy: Always
+      volumes:
+        - name: solr-conf
+          configMap:
+            name: solr-conf
+            items:
+              - key: solr.xml
+                path: solr.xml
+        - name: ols-solr-data
+          persistentVolumeClaim:
+            claimName: ols-solr-data
+        - name: solr-claim1
+          persistentVolumeClaim:
+            claimName: solr-claim1

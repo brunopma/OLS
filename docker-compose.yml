@@ -19,9 +19,7 @@ services:
       command:
           - mongod
     ols-web:
-      build:
-          context: .
-          dockerfile: ols-web/Dockerfile
+      image: ebispot/ols-web:v3.2.5-main-test
       depends_on:
         - solr
         - mongo
@@ -44,7 +42,7 @@ services:
         - OLS_HOME=/mnt/
       volumes:
         - ols-neo4j-data:/mnt/neo4j
-        - ols-downloads:/mnt/downloads        
+        - ols-downloads:/mnt/downloads
       ports:
       - 8080:8080
 volumes:

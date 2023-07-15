@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ols-config-importer-configmap
+data:
+  ols-config.yaml: |
+    ---
+    ontologies:
+    - preferredPrefix: "SO"
+      title: "The Sequence Ontology"
+      uri: "http://purl.obolibrary.org/obo/so.owl"
+      id: "SO"
+      ontology_purl: "https://raw.githubusercontent.com/The-Sequence-Ontology/SO-Ontologies/master/Ontology_Files/so.owl"
+      label_property: "http://www.w3.org/2000/01/rdf-schema#label"
+      definition_property:
+        - "http://purl.obolibrary.org/obo/IAO_0000115"
+      synonym_property:
+        - "http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"
+      hierarchical_property:
+        - "http://purl.obolibrary.org/obo/BFO_0000050"
+      base_uri:
+        - "http://purl.obolibrary.org/obo/SO_"
+
+  obo-config.yaml: |
+    name: OBO Foundry
+    title: The OBO Foundry
+    markdown: kramdown
+    highlighter: rouge
+    baseurl: /
+    imgurl: /images
+    repo: https://github.com/OBOFoundry/OBOFoundry.github.io/
+    repo_src: https://github.com/OBOFoundry/OBOFoundry.github.io/blob/master/
+    author:
+    name: OBO Technical WG
+    ontologies:
+

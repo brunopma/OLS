@@ -1,0 +1,39 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ols-config-importer
+spec:
+  template:
+    spec:
+      containers:
+      - name: ols-config-importer
+        image: ebispot/ols-config-importer:stable
+        env:
+            - name: spring.data.mongodb.host
+              value: mongo
+            - name: spring.data.mongodb.uri
+              value: mongodb://mongo/test
+        volumeMounts:
+            - name: ols-config
+              mountPath: /config/ols-config.yaml
+              subPath: ols-config.yaml
+              readOnly: true
+            - name: obo-config
+              mountPath: /config/obo-config.yaml
+              subPath: obo-config.yaml
+              readOnly: true
+      restartPolicy: Never
+      volumes:
+        - name: ols-config
+          configMap:
+            name: ols-config-importer-configmap
+            items:
+              - key: ols-config.yaml
+                path: ols-config.yaml
+        - name: obo-config
+          configMap:
+            name: ols-config-importer-configmap
+            items:
+              - key: obo-config.yaml
+                path: obo-config.yaml
+  backoffLimit: 4
