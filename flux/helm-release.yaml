@@ -3,6 +3,8 @@ kind: HelmRelease
 metadata:
   name: ols-basf
   namespace: ols-basf
+  annotations:
+    fluxcd.io/automated: "true"
 spec:
   interval: 1m
   chart:
@@ -14,5 +16,6 @@ spec:
         name: ols-basf
         namespace: flux-system
       interval: 1m
+  reconcileStrategy: Revision
   values:
     replicaCount: 1
