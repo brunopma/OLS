@@ -43,6 +43,3 @@ spec:
         - name: ols-solr-data
           persistentVolumeClaim:
             claimName: ols-solr-data
-        - name: solr-claim1
-          persistentVolumeClaim:
-            claimName: solr-claim1
