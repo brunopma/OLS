@@ -5,7 +5,7 @@ metadata:
     app: ols-web
   name: ols-web
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: ols-web
@@ -46,7 +46,9 @@ spec:
               - mountPath: /mnt/downloads
                 name: ols-downloads
       containers:
-        - env:
+        - image: ebispot/ols-web:v3.2.5-main-test
+          name: ols-web
+          env:
             - name: OLS_HOME
               value: /mnt/
             - name: ols.customisation.backgroundColor
@@ -73,8 +75,6 @@ spec:
               value: mongo
             - name: spring.data.solr.host
               value: http://solr:8983/solr
-          image: ebispot/ols-web:v3.2.5-main-test
-          name: ols-web
           ports:
             - containerPort: 8080
           resources: {}
